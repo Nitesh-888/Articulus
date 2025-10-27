@@ -49,6 +49,12 @@ namespace NewsHub.Controllers.Users
                 return BadRequest("Email already exists");
             }
 
+            //check password strength
+            if(!_authServices.IsPasswordStrong(userReq.Password))
+            {
+                return BadRequest("Password is not strong enough. It should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+            }
+
             //check if temp user exists with same email or username, if yes delete
             var tempUserExists = await _dbContext.TempUsers.FindAsync(userReq.Email);
             if (tempUserExists != null)

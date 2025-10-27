@@ -33,6 +33,7 @@ namespace NewsHub.Controllers.Articles
                 CommentsCount = a.Comments.Count,
                 CreatedAt = a.CreatedAt,
             }).ToListAsync();
+
             return Ok(articlesList);
         }
 

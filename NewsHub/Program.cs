@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NewsHub.Data;
+using NewsHub.Filters;
 using NewsHub.Services;
+using Serilog;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -82,6 +84,34 @@ builder.Services.AddAuthentication(option => option.DefaultAuthenticateScheme = 
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<AuthServices>();
 builder.Services.AddSingleton<MailServices>();
+
+//configure serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.Seq("http://localhost:5341")
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+//add logging filter globally
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<LogActionFilter>();
+});
+
+//add global exception filter
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalExceptionActionFilter>();
+});
+
+//http client 
+builder.Services.AddHttpClient("NewsApiClient", client =>
+{
+    client.BaseAddress = new Uri("https://newsapi.org/v2/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 
 var app = builder.Build();
 
