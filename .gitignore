@@ -19,7 +19,7 @@
 .DS_Store
 
 # Don't ignore the default appsettings, but ignore the local development one
-NewsHub/appsettings.Development.json
+Articulus/appsettings.Development.json
 
 # Log files
 *.log

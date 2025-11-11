@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Articulus.Data\Articulus.Data\Articulus.Data.csproj" />
+    <ProjectReference Include="..\..\Articulus.DTOs\Articulus.DTOs\Articulus.DTOs.csproj" />
+    <ProjectReference Include="..\..\Articulus.Services\Articulus.Services\Articulus.Services.csproj" />
+  </ItemGroup>
+
+</Project>
