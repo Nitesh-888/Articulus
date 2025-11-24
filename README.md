@@ -174,7 +174,7 @@ Once the application is running in Development mode, you can access the interact
 - `POST /api/ArticleComments` - Add a comment
 - `POST /api/ArticleReactions` - React to an article
 - `POST /api/ArticleActions/bookmark` - Bookmark an article
-- `POST /api/AritcleCommentVotes` - Vote on a comment
+- `POST /api/ArticleCommentVotes` - Vote on a comment
 
 #### User Profile
 - `GET /api/UserProfile/{userId}` - Get user profile
